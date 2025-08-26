@@ -52,7 +52,7 @@ CREATE TABLE UserCategories (
     UserID UNIQUEIDENTIFIER NOT NULL REFERENCES Users(UserID) ON DELETE CASCADE,
     CategoryID UNIQUEIDENTIFIER NULL REFERENCES Categories(CategoryID),
     CustomName NVARCHAR(100),
-    CategoryType NVARCHAR(50) NOT NULL CHECK (CategoryType IN ('income', 'expense')),
+    CategoryType NVARCHAR(50) CHECK (CategoryType IN ('income', 'expense')),
     IsActive BIT DEFAULT 1,
     CreatedAt DATETIME2 DEFAULT GETDATE(),
     UNIQUE(UserID, CategoryID,CustomName)
