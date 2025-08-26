@@ -225,7 +225,7 @@ def create_chat_message(
     db.commit()
     db.refresh(db_message)
     
-    return ChatMessageResponse(
+    return ChatMessageResponse( 
         MessageID=db_message.MessageID,
         SessionID=db_message.SessionID,
         UserID=db_message.UserID,
