@@ -1,98 +1,22 @@
-import { useState } from 'react';
-import Layout from '../components/Layout/Layout';
-import { FiUsers, FiFileText, FiDownload, FiPlus, FiTrendingUp, FiTrendingDown, FiUser } from 'react-icons/fi';
-import { FaChartPie } from 'react-icons/fa';
 import React from "react";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import Layout from "../components/Layout/Layout";
 import Select from "../components/ui/selection";
 
-const Dashboard = () => {
-  const today = new Date().toISOString().split("T")[0];
 
-
+export default function Analytics() {
     return (
         <Layout>
-                <div className="min-h-screen bg-[#121212] text-white p-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-        <div className="space-x-2">
-          {/* <button className="bg-white text-black px-4 py-2 rounded">Export</button> */}
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Transaction</button>
-        </div>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
-        {[
-          { label: 'Total Balance', value: '$12,546.00', sub: '+2.5% from last month' },
-          { label: 'Income', value: '$4,935.00', sub: '+10.1% from last month' },
-          { label: 'Expenses', value: '$2,463.00', sub: '+7.2% from last month' },
-        ].map(({ label, value, sub }, i) => (
-          <div key={i} className="bg-[#1e1e1e] p-4 rounded shadow">
-            <div className="text-gray-400 text-sm">{label}</div>
-            <div className="text-xl font-semibold">{value}</div>
-            <div className="text-green-500 text-sm">{sub}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Recent Transactions */}
-        <div className="bg-[#1e1e1e] p-4 rounded">
-          <h2 className="text-lg font-semibold mb-1">Recent Transactions</h2>
-          <p className="text-sm text-gray-400 mb-4">Your most recent financial activities</p>
-          <ul className="space-y-3">
-            {[...Array(5)].map((_, i) => (
-              <li key={i} className="flex justify-between border-b border-gray-700 pb-2">
-                <div>
-                  <div className="font-medium">Grocery Shopping</div>
-                  <div className="text-xs text-gray-500">July {21 + i}, 2025</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-red-500 font-semibold">-${(84.1 + i * 0.1).toFixed(2)}</div>
-                  <div className="text-xs text-gray-500">Food</div>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <button className="w-full text-center text-sm text-blue-400 mt-3">View all transactions</button>
-        </div>
-
-        {/* Budget Status */}
-        <div className="bg-[#1e1e1e] p-4 rounded">
-          <h2 className="text-lg font-semibold mb-1">Budget Status</h2>
-          <p className="text-sm text-gray-400 mb-4">Your current budget utilization</p>
-          {[
-            { name: 'Food', percent: 75, color: 'bg-white' },
-            { name: 'Transportation', percent: 50, color: 'bg-white' },
-            { name: 'Entertainment', percent: 90, color: 'bg-red-500' },
-            { name: 'Utilities', percent: 30, color: 'bg-white' },
-          ].map(({ name, percent, color }) => (
-            <div key={name} className="mb-4">
-              <div className="flex justify-between text-sm mb-1">
-                <span>{name}</span>
-                <span>{percent}%</span>
-              </div>
-              <div className="w-full h-2 bg-gray-700 rounded">
-                <div
-                  className={`${color} h-2 rounded`}
-                  style={{ width: `${percent}%` }}
-                ></div>
-              </div>
-            </div>
-          ))}
-          <button className="w-full text-center text-sm text-blue-400">View all budgets</button>
-        </div>
-      </div>
-
+            <div className="p-6 bg-black text-white min-h-screen space-y-6">
+                <h1 className="text-3xl font-bold">Analytics</h1>
 
                 {/* Filters */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
                     <div>
                         <label className="text-sm">Date Range</label>
-                        <Input type="date" defaultValue={ today} className="text-black" />
+                        <Input type="date" defaultValue="2025-07-01" className="text-black" />
                     </div>
                     <div>
                         <label className="text-sm text-white mb-1 block">Period</label>
@@ -154,7 +78,7 @@ const Dashboard = () => {
                     </Card>
                 </div>
 
-                {/* Budget Utilization & Insights
+                {/* Budget Utilization & Insights */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <Card className="bg-[#111]">
                         <CardContent className="p-4 text-white">
@@ -176,7 +100,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Spending Trends */}
-                {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <Card className="bg-[#111]">
                         <CardContent className="p-4 text-white">
                             <p className="font-semibold mb-2">Spending Over Time</p>
@@ -194,10 +118,10 @@ const Dashboard = () => {
                                 </div>
                             ))}
                         </CardContent>
-                    </Card> */}
+                    </Card>
 
                     {/* Category Trends */}
-                    {/* <Card className="bg-[#111]">
+                    <Card className="bg-[#111]">
                         <CardContent className="p-4 text-white">
                             <p className="font-semibold mb-2">Category Trends</p>
                             {[
@@ -211,12 +135,13 @@ const Dashboard = () => {
                             ))}
                         </CardContent>
                     </Card>
-                 </div> */}
-      
-    </div>
+                </div>
 
+                <div className="flex justify-end space-x-4">
+                    <Button variant="outline" className="bg-gray-700 text-white">Refresh</Button>
+                    <Button className="bg-white text-black">Export</Button>
+                </div>
+            </div>
         </Layout>
-    )
+    );
 }
-
-export default Dashboard
